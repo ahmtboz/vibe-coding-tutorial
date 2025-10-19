@@ -115,7 +115,7 @@ const Header = () => {
 
     const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
     
-    const handleDropdownToggle = (menuName) => {
+    const handleDropdownToggle = (menuName: string) => {
         if (window.innerWidth <= 768) {
              setOpenDropdown(openDropdown === menuName ? '' : menuName);
         }
@@ -227,7 +227,6 @@ const StatCounter: React.FC<{ end: number, label: string }> = ({ end, label }) =
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    let start = 0;
                     const startTime = Date.now();
                     const step = () => {
                         const now = Date.now();
