@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
+import './index.css';
 
 // --- Veri Örnekleri ---
 const heroSlides = [
@@ -30,6 +31,61 @@ const statsData = [
     { end: 25, label: 'Yıllık Tecrübe' },
     { end: 120, label: 'Mutlu Müşteri' },
     { end: 45, label: 'Uzman Kadro' }
+];
+
+const formworkData = [
+    {
+        id: 'endustriyel-kalip',
+        image: 'https://images.pexels.com/photos/8346033/pexels-photo-8346033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        title: 'Endüstriyel Kalıp Sistemleri',
+        description: 'Büyük ölçekli ve tekrarlayan yapı elemanlarına sahip projeler (barajlar, viyadükler, endüstriyel tesisler, yüksek katlı binalar) için tasarlanmış, yüksek dayanıklılığa ve uzun ömre sahip sistemlerdir. Çelik veya alüminyum panellerden oluşur ve vinç yardımıyla kolayca monte edilir.',
+        features: [
+            'Yüksek taşıma kapasitesi ve dayanıklılık.',
+            'Pürüzsüz beton yüzeyleri sağlar.',
+            'Çok sayıda tekrar kullanım imkanı sunarak maliyet avantajı yaratır.',
+            'İş güvenliğini artıran entegre çalışma platformlarına sahiptir.'
+        ],
+        align: 'left'
+    },
+    {
+        id: 'tunel-kalip',
+        image: 'https://images.pexels.com/photos/1216556/pexels-photo-1216556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        title: 'Tünel Kalıp Sistemleri',
+        description: 'Özellikle toplu konut projeleri gibi seri imalat gerektiren yapılarda kullanılan, perde ve döşemelerin tek bir işlemde dökülmesini sağlayan verimli bir sistemdir. Yapım sürecini önemli ölçüde hızlandırır ve monolitik bir yapı oluşturarak depreme karşı dayanıklılığı artırır.',
+        features: [
+            'Günde bir kat imalat hızına ulaşma imkanı.',
+            'Monolitik yapı sayesinde yüksek deprem performansı.',
+            'İşçilik maliyetlerinde azalma.',
+            'Pürüzsüz ve düzgün yüzeyler sayesinde ince işçilik maliyetlerini düşürür.'
+        ],
+        align: 'right'
+    },
+    {
+        id: 'ahsap-kalip',
+        image: 'https://images.pexels.com/photos/7217992/pexels-photo-7217992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        title: 'Ahşap Kalıp Sistemleri',
+        description: 'Esnekliği ve işleme kolaylığı sayesinde özellikle karmaşık geometrilere sahip veya küçük ölçekli projelerde tercih edilen geleneksel bir kalıp türüdür. Plywood, kereste ve H20 ahşap kirişler gibi elemanlardan oluşur ve yerinde kolayca şekillendirilebilir.',
+        features: [
+            'Farklı geometrik şekillere kolayca uyum sağlar.',
+            'Diğer sistemlere göre ilk yatırım maliyeti daha düşüktür.',
+            'Hafif olması nedeniyle kolay taşınır ve monte edilir.',
+            'Onarımı ve üzerinde değişiklik yapılması kolaydır.'
+        ],
+        align: 'left'
+    },
+     {
+        id: 'ozel-kaliplar',
+        image: 'https://images.pexels.com/photos/1269033/pexels-photo-1269033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        title: 'Projeye Özel Kalıp Çözümleri',
+        description: 'Standart kalıp sistemlerinin yetersiz kaldığı, benzersiz mimari tasarımlar ve özel mühendislik gereksinimleri için geliştirilen çözümlerdir. Tırmanır kalıplar, tek taraflı perde kalıpları veya proje bazlı tasarlanan özel geometrili kalıplar bu kategoriye girer.',
+        features: [
+            'Projenin mimari ve statik ihtiyaçlarına tam uyum.',
+            'En zorlu ve karmaşık yapıların inşasına olanak tanır.',
+            'Malzeme, zaman ve işçilikten tasarruf sağlayacak şekilde optimize edilir.',
+            'Maksimum güvenlik ve verimlilik hedeflenerek tasarlanır.'
+        ],
+        align: 'right'
+    }
 ];
 
 const referencesData = [
@@ -65,6 +121,13 @@ const Header = () => {
         }
     }
 
+    const preventNav = (e: React.MouseEvent) => {
+        const target = e.target as HTMLAnchorElement;
+        if (target.getAttribute('href') === '#') {
+            e.preventDefault();
+        }
+    };
+
     return (
         <header className="header">
             <a href="#home" className="logo">YAPI<span>İNŞAAT</span></a>
@@ -80,29 +143,29 @@ const Header = () => {
                             Kalıp Sistemleri <i className="fas fa-chevron-down dropdown-icon"></i>
                         </a>
                         <ul className="dropdown-menu">
-                            <li className="dropdown-item"><a href="#">Endüstriyel Kalıp</a></li>
-                            <li className="dropdown-item"><a href="#">Tünel Kalıp</a></li>
-                            <li className="dropdown-item"><a href="#">Ahşap Kalıp</a></li>
-                            <li className="dropdown-item"><a href="#">Özel Kalıplar</a></li>
+                            <li className="dropdown-item"><a href="#endustriyel-kalip">Endüstriyel Kalıp</a></li>
+                            <li className="dropdown-item"><a href="#tunel-kalip">Tünel Kalıp</a></li>
+                            <li className="dropdown-item"><a href="#ahsap-kalip">Ahşap Kalıp</a></li>
+                            <li className="dropdown-item"><a href="#ozel-kaliplar">Özel Kalıplar</a></li>
                         </ul>
                     </li>
                     <li className="nav-item">
                         <a href="#referanslar" className="nav-link">Referanslarımız</a>
                     </li>
                      <li className="nav-item">
-                        <a href="#haberler" className="nav-link">Haberler</a>
+                        <a href="#" className="nav-link" onClick={preventNav}>Haberler</a>
                     </li>
                     <li className={`nav-item ${openDropdown === 'kurumsal' ? 'open' : ''}`}
                          onClick={() => handleDropdownToggle('kurumsal')}
                     >
-                        <a href="#kurumsal" className="nav-link">
+                        <a href="#" className="nav-link" onClick={preventNav}>
                             Kurumsal <i className="fas fa-chevron-down dropdown-icon"></i>
                         </a>
                         <ul className="dropdown-menu">
-                            <li className="dropdown-item"><a href="#">Hakkımızda</a></li>
-                            <li className="dropdown-item"><a href="#">Tarihçe</a></li>
-                            <li className="dropdown-item"><a href="#">Kalite Politikamız</a></li>
-                            <li className="dropdown-item"><a href="#">Dokümanlar</a></li>
+                            <li className="dropdown-item"><a href="#" onClick={preventNav}>Hakkımızda</a></li>
+                            <li className="dropdown-item"><a href="#" onClick={preventNav}>Tarihçe</a></li>
+                            <li className="dropdown-item"><a href="#" onClick={preventNav}>Kalite Politikamız</a></li>
+                            <li className="dropdown-item"><a href="#" onClick={preventNav}>Dokümanlar</a></li>
                         </ul>
                     </li>
                     <li className="nav-item">
@@ -155,7 +218,6 @@ const HeroSlider = () => {
     );
 };
 
-// Fix: Explicitly type the props for StatCounter as a React.FC to correctly handle props like 'key'.
 const StatCounter: React.FC<{ end: number, label: string }> = ({ end, label }) => {
     const [count, setCount] = useState(0);
     const ref = useRef(null);
@@ -216,6 +278,34 @@ const StatsSection = () => (
     </section>
 );
 
+const FormworkSystemsSection = () => (
+    <section id="kalip-sistemleri" className="section formwork-section">
+        <div className="container">
+            <h2 className="section-title">Kalıp Sistemlerimiz</h2>
+            <p className="section-subtitle">Projelerinize Özel, Modern ve Verimli Çözümler</p>
+            <div className="formwork-systems-wrapper">
+                {formworkData.map((system, index) => (
+                    <div id={system.id} className={`formwork-item ${system.align === 'right' ? 'align-right' : ''}`} key={index}>
+                        <div className="formwork-image">
+                            <img src={system.image} alt={system.title} />
+                        </div>
+                        <div className="formwork-content">
+                            <h3>{system.title}</h3>
+                            <p>{system.description}</p>
+                            <ul>
+                                {system.features.map((feature, fIndex) => (
+                                    <li key={fIndex}><i className="fas fa-check-circle"></i> {feature}</li>
+                                ))}
+                            </ul>
+                            <a href="#iletisim" className="cta-btn">Detaylı Bilgi Al</a>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
 
 const ReferencesSection = () => (
     <section id="referanslar" className="section">
@@ -260,7 +350,7 @@ const ContactSection = () => (
                     <div className="map-container">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.395466487053!2d29.02219731538357!3d41.01633597929994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab9e894553d7b%3A0x29c99e924a2c9c28!2s%C3%9Csk%C3%BCdar%2C%20%C4%B0stanbul!5e0!3m2!1str!2str!4v1620998900000!5m2!1str!2str"
-                            allowFullScreen="" loading="lazy" title="Konum">
+                            allowFullScreen loading="lazy" title="Konum">
                         </iframe>
                     </div>
                 </div>
@@ -288,51 +378,59 @@ const ContactSection = () => (
 );
 
 
-const Footer = () => (
-    <footer className="footer">
-        <div className="container">
-            <div className="footer-grid">
-                <div className="footer-col">
-                    <h4>YAPIİNŞAAT</h4>
-                    <p>İnşaat sektöründe yenilikçi kalıp sistemleri ile projelerinize değer katıyoruz. Kalite ve güvenden ödün vermeden hizmetinizdeyiz.</p>
-                     <div className="social-links">
-                        <a href="#"><i className="fab fa-facebook-f"></i></a>
-                        <a href="#"><i className="fab fa-twitter"></i></a>
-                        <a href="#"><i className="fab fa-instagram"></i></a>
-                        <a href="#"><i className="fab fa-linkedin-in"></i></a>
+const Footer = () => {
+    const preventNav = (e: React.MouseEvent) => {
+        const target = e.target as HTMLAnchorElement;
+        if (target.getAttribute('href') === '#') {
+            e.preventDefault();
+        }
+    };
+    return (
+        <footer className="footer">
+            <div className="container">
+                <div className="footer-grid">
+                    <div className="footer-col">
+                        <h4>YAPIİNŞAAT</h4>
+                        <p>İnşaat sektöründe yenilikçi kalıp sistemleri ile projelerinize değer katıyoruz. Kalite ve güvenden ödün vermeden hizmetinizdeyiz.</p>
+                         <div className="social-links">
+                            <a href="#" onClick={preventNav}><i className="fab fa-facebook-f"></i></a>
+                            <a href="#" onClick={preventNav}><i className="fab fa-twitter"></i></a>
+                            <a href="#" onClick={preventNav}><i className="fab fa-instagram"></i></a>
+                            <a href="#" onClick={preventNav}><i className="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div className="footer-col">
+                        <h4>Hızlı Menü</h4>
+                        <ul>
+                            <li><a href="#home">Ana Sayfa</a></li>
+                            <li><a href="#referanslar">Referanslar</a></li>
+                            <li><a href="#" onClick={preventNav}>Kurumsal</a></li>
+                            <li><a href="#iletisim">İletişim</a></li>
+                        </ul>
+                    </div>
+                     <div className="footer-col">
+                        <h4>Kalıp Sistemleri</h4>
+                        <ul>
+                            <li><a href="#endustriyel-kalip">Endüstriyel Kalıp</a></li>
+                            <li><a href="#tunel-kalip">Tünel Kalıp</a></li>
+                            <li><a href="#ahsap-kalip">Ahşap Kalıp</a></li>
+                            <li><a href="#ozel-kaliplar">Özel Kalıplar</a></li>
+                        </ul>
+                    </div>
+                    <div className="footer-col">
+                        <h4>İletişim</h4>
+                         <p><i className="fas fa-map-marker-alt"></i> Örnek Mah. No:123, İstanbul</p>
+                         <p><i className="fas fa-phone"></i> +90 216 123 45 67</p>
+                         <p><i className="fas fa-envelope"></i> info@yapiinsaat.com.tr</p>
                     </div>
                 </div>
-                <div className="footer-col">
-                    <h4>Hızlı Menü</h4>
-                    <ul>
-                        <li><a href="#home">Ana Sayfa</a></li>
-                        <li><a href="#referanslar">Referanslar</a></li>
-                        <li><a href="#kurumsal">Kurumsal</a></li>
-                        <li><a href="#iletisim">İletişim</a></li>
-                    </ul>
-                </div>
-                 <div className="footer-col">
-                    <h4>Kalıp Sistemleri</h4>
-                    <ul>
-                        <li><a href="#">Endüstriyel Kalıp</a></li>
-                        <li><a href="#">Tünel Kalıp</a></li>
-                        <li><a href="#">Ahşap Kalıp</a></li>
-                        <li><a href="#">Özel Kalıplar</a></li>
-                    </ul>
-                </div>
-                <div className="footer-col">
-                    <h4>İletişim</h4>
-                     <p><i className="fas fa-map-marker-alt"></i> Örnek Mah. No:123, İstanbul</p>
-                     <p><i className="fas fa-phone"></i> +90 216 123 45 67</p>
-                     <p><i className="fas fa-envelope"></i> info@yapiinsaat.com.tr</p>
+                <div className="footer-bottom">
+                    <p>&copy; {new Date().getFullYear()} Yapı İnşaat Kalıp Sistemleri. Tüm Hakları Saklıdır.</p>
                 </div>
             </div>
-            <div className="footer-bottom">
-                <p>&copy; {new Date().getFullYear()} Yapı İnşaat Kalıp Sistemleri. Tüm Hakları Saklıdır.</p>
-            </div>
-        </div>
-    </footer>
-);
+        </footer>
+    );
+};
 
 
 const App = () => {
@@ -342,6 +440,7 @@ const App = () => {
             <main>
                 <HeroSlider />
                 <StatsSection />
+                <FormworkSystemsSection />
                 <ReferencesSection />
                 <ContactSection />
             </main>

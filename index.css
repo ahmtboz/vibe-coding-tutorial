@@ -25,24 +25,12 @@
 body {
   font-family: 'Montserrat', sans-serif;
   color: var(--text-color);
-  background: url('https://images.unsplash.com/photo-1581092916376-22245b6a71e3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
-  background-size: cover;
-  position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.85);
-    z-index: -1;
+  background-color: var(--background-color);
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height); /* For anchor links */
 }
 
 .container {
@@ -112,7 +100,13 @@ html {
 .dropdown-icon {
   margin-left: 5px;
   font-size: 0.7em;
+  transition: transform 0.3s ease;
 }
+
+.nav-item:hover .dropdown-icon {
+    transform: rotate(180deg);
+}
+
 
 .dropdown-menu {
   position: absolute;
@@ -281,6 +275,84 @@ html {
     margin-top: 10px;
 }
 
+/* --- Kalıp Sistemleri Bölümü --- */
+.formwork-section {
+    background-color: var(--background-color);
+}
+
+.formwork-systems-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Her sistem arasında boşluk */
+}
+
+.formwork-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.formwork-item.align-right .formwork-image {
+    order: 2;
+}
+
+.formwork-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    object-fit: cover;
+    height: 100%;
+    max-height: 400px;
+}
+
+.formwork-content h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.formwork-content p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.formwork-content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.formwork-content ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    color: #333;
+}
+
+.formwork-content ul li i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.cta-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.cta-btn:hover {
+    background-color: #248b77;
+}
+
+
 /* --- Referanslar Bölümü --- */
 .references-grid {
     display: grid;
@@ -423,6 +495,7 @@ html {
 
 .footer-col ul {
     list-style: none;
+    padding: 0;
 }
 
 .footer-col ul li a {
@@ -481,6 +554,7 @@ html {
         align-items: center;
         padding-top: 40px;
         transition: left 0.4s ease-in-out;
+        overflow-y: auto;
     }
 
     .nav-list.open {
@@ -499,6 +573,14 @@ html {
         justify-content: center;
     }
 
+    .dropdown-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item.open > a .dropdown-icon {
+        transform: rotate(180deg);
+    }
+    
     .dropdown-menu {
         position: static;
         background-color: transparent;
@@ -525,11 +607,13 @@ html {
         /* Hover etkisini mobilde devre dışı bırak */
         opacity: 0;
         visibility: hidden;
+        display: none;
     }
 
      .nav-item.open:hover .dropdown-menu {
         opacity: 1;
         visibility: visible;
+        display: block;
     }
 
 
@@ -549,5 +633,18 @@ html {
     }
     .section-title {
         font-size: 2rem;
+    }
+
+    .formwork-item {
+        grid-template-columns: 1fr;
+    }
+    .formwork-item.align-right .formwork-image {
+        order: 1; /* Stack image on top */
+    }
+     .formwork-image {
+        order: 1;
+    }
+    .formwork-content {
+        order: 2;
     }
 }
